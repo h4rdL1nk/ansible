@@ -1,17 +1,5 @@
 ---
 
-#- name: "TEMPLATE - Modify default config"
-#  become: yes
-#  action:
-#    module: template
-#    src: "{{docker['common']['config']['daemon']['file']}}" 
-#    dest: "{{docker['common']['config']['dir']}}/{{docker['common']['config']['daemon']['file']}}"
-#    owner: 'root'
-#    group: 'root'
-#    mode: 0600
-#    backup: yes
-#  notify: restart_docker
-
 - name: "FILE - create config directory"
   become: yes
   action:
