@@ -1,5 +1,0 @@
-{
-    "debug": {{docker['common']['config']['daemon']['options']['debug']}},
-    "insecure-registries": [{%for registry in docker['common']['config']['daemon']['options']['insecure-registries']%}"{{registry}}"{%if loop.index < docker['common']['config']['daemon']['options']['insecure-registries']|length%},{%endif%}{%endfor%}]
-}
-
