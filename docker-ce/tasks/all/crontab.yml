@@ -1,0 +1,16 @@
+---
+
+- name: "CRON - Crontab jobs config"
+  become: yes
+  action:
+    module: cron
+    name: "{{item.name}}"
+    user: "{{item.user}}"
+    job: "{{item.job}}"
+    minute: "{{item.minute}}"
+    hour: "{{item.hour}}"
+    weekday: "{{item.weekday}}"
+    day: "{{item.day}}"
+    month: "{{item.month}}"
+  with_items: "{{docker['common']['crones']}}"
+

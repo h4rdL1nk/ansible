@@ -1,0 +1,19 @@
+---
+- name: reload_systemd_daemon_docker
+  become: yes
+  action:
+    module: systemd
+    name: "{{docker[ansible_distribution | lower]['service']}}"
+    daemon_reload: yes
+
+- name: reload_systemd_daemons
+  become: yes
+  shell: "systemctl daemon-reload"
+
+- name: "restart_docker" 
+  become: yes
+  service:
+    name: "{{docker[ansible_distribution | lower]['service']}}" 
+    state: restarted
+    enabled: yes
+

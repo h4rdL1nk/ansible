@@ -1,0 +1,49 @@
+---
+
+docker:
+   common: 
+      bin:
+         daemon: '/usr/bin/dockerd'
+      systemd:
+         unit_file: '/lib/systemd/system/docker.service'
+      crones:
+         - name: 'Docker prune'
+           user: 'root'
+           job: 'docker system prune -af'
+           minute: '0'
+           hour: '0'
+           weekday: '*'
+           day: '*'
+           month: '*'
+      config:
+         dir: '/etc/docker'
+         daemon:
+            file: "daemon.json"
+            options:
+               default:
+                  debug: false 
+                  hosts:
+                     - 'fd://'
+                  insecure-registries:
+               manager:
+                  debug: false
+                  hosts:
+                     - 'tcp://0.0.0.0:4243'
+                     - 'fd://'
+                  insecure-registries:
+                     - 'registry.madisonmk.local:5000'
+               worker:
+                  debug: false
+                  hosts:
+                     - 'fd://'
+                  insecure-registries:
+                     - 'registry.madisonmk.local:5000'
+   ubuntu:
+      service: 'docker'
+      default_config: '/etc/default/docker'
+      repos:
+         - name: 'Docker'
+           repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable"
+           key: 'https://download.docker.com/linux/ubuntu/gpg'
+      packages:
+         - 'docker-ce'
