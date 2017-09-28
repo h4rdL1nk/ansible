@@ -1,0 +1,6 @@
+---
+
+- name: "Config docker node"
+  hosts: localhost 
+  roles:
+     - { role: docker-ce , when: true }
