@@ -1,6 +1,6 @@
 ---
 
-- name: "APT_KEY - Add external repo keys from URL"
+- name: APT_KEY - Add external repo keys from URL
   become: yes
   action:
     module: apt_key
@@ -9,7 +9,7 @@
   when: item['key'] is defined
   with_items: "{{docker[ansible_distribution | lower]['repos']}}"
 
-- name: "APT_REPOSITORY - Add external repos"
+- name: APT_REPOSITORY - Add external repos
   become: yes
   action:
     module: apt_repository
@@ -18,7 +18,7 @@
     repo: "{{item['repo']}}"
   with_items: "{{docker[ansible_distribution | lower]['repos']}}"
 
-- name: "APT - install packages"
+- name: APT - install packages
   become: yes
   action:
     module: apt

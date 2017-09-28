@@ -1,6 +1,6 @@
 ---
 
-- name: "FILE - create config directory"
+- name: FILE - create config directory
   become: yes
   action:
     module: file
@@ -10,33 +10,33 @@
     state: directory
     mode: 0700
 
-- name: "COPY - Modify default config (default)"
+- name: COPY - Modify default config (default)
   become: yes
   action:
     module: copy 
     content: "{{docker['common']['config']['daemon']['options']['default'] | to_nice_json}}"
     dest: "{{docker['common']['config']['dir']}}/{{docker['common']['config']['daemon']['file']}}"
-    owner: 'root'
-    group: 'root'
+    owner: root
+    group: root
     mode: 0600
     backup: yes
   notify: restart_docker
   when: swarm is not defined
 
-- name: "COPY - Modify default config (manager)"
+- name: COPY - Modify default config (manager)
   become: yes
   action:
     module: copy
     content: "{{docker['common']['config']['daemon']['options'][rol] | to_nice_json}}"
     dest: "{{docker['common']['config']['dir']}}/{{docker['common']['config']['daemon']['file']}}"
-    owner: 'root'
-    group: 'root'
+    owner: root
+    group: root
     mode: 0600
     backup: yes
   notify: restart_docker
   when: swarm is defined and rol == "manager"
 
-- name: "COPY - Modify default config (worker)"
+- name: COPY - Modify default config (worker)
   become: yes
   action:
     module: copy
@@ -49,11 +49,11 @@
   notify: restart_docker
   when: swarm is defined and rol == "worker"
 
-- name: "TEMPLATE - Modify systemd service config"
+- name: TEMPLATE - Modify systemd service config
   become: yes
   action:
     module: template
-    src: "systemd/docker.service"
+    src: systemd/docker.service
     dest: "{{ docker['common']['systemd']['unit_file'] }}"
     owner: root
     group: root

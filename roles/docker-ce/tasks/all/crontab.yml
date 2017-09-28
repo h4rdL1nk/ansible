@@ -1,6 +1,6 @@
 ---
 
-- name: "CRON - Crontab jobs config"
+- name: CRON - Crontab jobs config
   become: yes
   action:
     module: cron
