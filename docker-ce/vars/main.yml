@@ -9,7 +9,7 @@ docker:
       crones:
          - name: 'Docker prune'
            user: root
-           job: 'docker system prune -af'
+           job: 'docker system prune -af --volumes'
            minute: 0
            hour: 0
            weekday: '*'
