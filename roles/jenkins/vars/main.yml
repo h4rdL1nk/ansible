@@ -112,42 +112,42 @@ jenkins:
         packages:
           - awscli 
       credentials:
-         file: 'credentials.xml'
-         keydir: 'keys'
+         file: credentials.xml
+         keydir: keys
          users:
-            - type: 'ssh' 
-              id: '3ae657c3-2bc9-41c0-96dc-fdd3960ad812' 
-              name: 'jenkins'
+            - type: ssh 
+              id: 3ae657c3-2bc9-41c0-96dc-fdd3960ad812
+              name: jenkins
       user: 
-         name: 'jenkins'
-         shell: '/bin/bash'
-         home: '/var/lib/jenkins'
+         name: jenkins
+         shell: /bin/bash
+         home: /var/lib/jenkins
          uid: 114 
          gid: 118 
          group:
-            name: 'jenkins' 
+            name: jenkins
             gid: 118
-         groups: 'docker'
+         groups: docker
          sudo:
-            enabled: 'true'
-            commands: '/usr/bin/docker'
+            enabled: true
+            commands: /usr/bin/docker
          ssh:
             known_hosts:
-               - name: 'bitbucket.org' 
+               - name: bitbucket.org
                  key: 'bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw=='
    ubuntu:
-      cli: '/var/cache/jenkins/war/WEB-INF/jenkins-cli.jar'
-      home: '/var/lib/jenkins'
-      initialpass: 'secrets/initialAdminPassword'
-      default_config: '/etc/default/jenkins'
-      service: 'jenkins'
+      cli: /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar
+      home: /var/lib/jenkins
+      initialpass: secrets/initialAdminPassword
+      default_config: /etc/default/jenkins
+      service: jenkins
       repos:
-         - name: 'Jenkins'
+         - name: Jenkins
            repo: 'deb http://pkg.jenkins.io/debian-stable binary/' 
-           key: 'https://pkg.jenkins.io/debian/jenkins-ci.org.key'
+           key: https://pkg.jenkins.io/debian/jenkins-ci.org.key
       packages:
-         - 'jenkins'
-         - 'python-pip'
-         - 'python-dev'
+         - jenkins
+         - python-pip
+         - python-dev
    centos:
 
