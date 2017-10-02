@@ -1,6 +1,6 @@
 ---
 
-- name: "GET_URL - Download package" 
+- name: GET_URL - Download package"
   action:
     module: get_url
     url: "{{vagrant['package']['url']['base']}}/{{vagrant['package']['version']}}/vagrant_{{vagrant['package']['version']}}_{{ansible_architecture}}.deb" 
@@ -8,7 +8,7 @@
     validate_certs: no
   register: package_download
 
-- name: "APT - Install package"
+- name: APT - Install package
   become: yes
   action:
     module: apt
@@ -16,7 +16,7 @@
   when: package_download.changed
   register: package_install
 
-- name: "SHELL - Install plugins"
+- name: SHELL - Install plugins
   shell: "vagrant plugin install {{item}}"
   with_items: "{{vagrant['plugins']}}"
   when: package_install.changed

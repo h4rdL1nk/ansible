@@ -1,6 +1,6 @@
 ---
 
-- name: "APT - install external packages"
+- name: APT - install external packages
   become: yes
   action:
     module: apt
