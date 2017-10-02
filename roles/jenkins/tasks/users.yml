@@ -1,0 +1,77 @@
+---
+
+- name: "GROUP - create group"
+  become: yes
+  action:
+    module: group
+    name: "{{jenkins['common']['user']['group']['name']}}" 
+    state: present 
+
+- name: "USER - create user"
+  become: yes
+  action:
+    module: user 
+    name: "{{jenkins['common']['user']['name']}}" 
+    state: present
+    group: "{{jenkins['common']['user']['group']['name']}}" 
+    groups: "{{jenkins['common']['user']['groups']}}"
+    shell: "{{jenkins['common']['user']['shell']}}" 
+    home: "{{jenkins['common']['user']['home']}}"
+
+- name: "LINEINFILE - grant sudo permissions"
+  become: yes
+  action:
+    module: lineinfile
+    dest: /etc/sudoers
+    state: present
+    line: "{{jenkins['common']['user']['name']}} ALL=(ALL) NOPASSWD: {{jenkins['common']['user']['sudo']['commands']}}"
+    validate: 'visudo -cf %s'
+  when: jenkins['common']['user']['sudo']['enabled'] == 'true'
+
+- name: "COPY - ssh public key"
+  become: yes
+  action:
+    module: copy
+    src: "keys/{{jenkins['common']['user']['name']}}/id_rsa.pub" 
+    dest: "{{jenkins['common']['user']['home']}}/.ssh/"
+    owner: "{{jenkins['common']['user']['name']}}" 
+    group: "{{jenkins['common']['user']['group']['name']}}" 
+    mode: '644'
+    directory_mode: '700'
+
+- name: "COPY - ssh private key"
+  become: yes
+  action:
+    module: copy
+    src: "keys/{{jenkins['common']['user']['name']}}/id_rsa" 
+    dest: "{{jenkins['common']['user']['home']}}/.ssh/"
+    owner: "{{jenkins['common']['user']['name']}}" 
+    group: "{{jenkins['common']['user']['group']['name']}}" 
+    mode: '600'
+    directory_mode: '700'
+
+- name: "AUTHORIZED_KEY - set key from jenkins user"
+  become: yes
+  action:
+    module: authorized_key 
+    state: present 
+    user: "{{jenkins['common']['user']['name']}}" 
+    key: "{{ lookup('file', 'keys/jenkins/id_rsa.pub') }}" 
+
+- name: "KNOWN_HOSTS - add keys to known_hosts" 
+  become: yes 
+  action:
+    module: known_hosts
+    path: "{{jenkins['common']['user']['home']}}/.ssh/known_hosts" 
+    name: "{{item['name']}}" 
+    key: "{{item['key']}}" 
+  with_items: "{{jenkins['common']['user']['ssh']['known_hosts']}}" 
+
+- name: "FILE - set known_hosts permissions"
+  become: yes
+  action:
+    module: file
+    path: "{{jenkins['common']['user']['home']}}/.ssh/known_hosts" 
+    owner: "{{jenkins['common']['user']['name']}}" 
+    group: "{{jenkins['common']['user']['group']['name']}}" 
+    mode: 0644

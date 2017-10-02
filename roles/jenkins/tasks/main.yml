@@ -1,0 +1,12 @@
+---
+
+- include: "{{ ansible_distribution | lower }}/packages.yml"
+- include: all/packages.yml
+- include: "{{ ansible_distribution | lower }}/config.yml"
+- include: "users.yml"
+
+#Master config
+- include: all/credentials.yml
+  when: rol == "master" 
+- include: all/plugins.yml
+  when: rol == "master"

@@ -1,0 +1,14 @@
+---
+- name: "restart_jenkins" 
+  become: yes
+  service:
+    name: "{{jenkins[ansible_distribution | lower]['service']}}" 
+    state: restarted
+    enabled: yes
+
+- name: "reload_jenkins"
+  become: yes
+  service:
+    name: "{{jenkins[ansible_distribution | lower]['service']}}" 
+    state: reloaded
+    enabled: yes

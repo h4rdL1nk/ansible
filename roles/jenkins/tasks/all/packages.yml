@@ -1,0 +1,9 @@
+---
+
+- name: "PIP - install packages"
+  become: yes
+  action:
+    module: pip
+    name: "{{jenkins['common']['pip']['packages']}}"
+    state: latest
+

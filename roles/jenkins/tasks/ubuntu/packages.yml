@@ -1,0 +1,31 @@
+---
+
+- name: "APT_KEY - Add external repo keys from URL"
+  become: yes
+  action:
+    module: apt_key
+    url: "{{item['key']}}"
+    state: present
+  when: item['key'] is defined
+  with_items: "{{jenkins[ansible_distribution | lower]['repos']}}"
+
+- name: "APT_REPOSITORY - Add external repos"
+  become: yes
+  action:
+    module: apt_repository
+    state: present
+    update_cache: yes
+    repo: "{{item['repo']}}"
+  with_items: "{{jenkins[ansible_distribution | lower]['repos']}}"
+
+- name: "APT - install packages"
+  become: yes
+  action:
+    module: apt
+    name: "{{item}}" 
+    state: latest 
+    allow_unauthenticated: yes
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items: "{{jenkins[ansible_distribution | lower]['packages']}}"
+  notify: restart_jenkins

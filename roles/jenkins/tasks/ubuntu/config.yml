@@ -1,0 +1,24 @@
+---
+
+- name: "SERVICE - enable jenkins service"
+  become: yes
+  action:
+    module: service
+    name: "{{jenkins[ansible_distribution | lower]['service']}}"
+    state: started
+    enabled: yes
+
+- name: "TEMPLATE - Modify default config"
+  become: yes
+  action:
+    module: template
+    src: "default_config"
+    dest: "{{jenkins[ansible_distribution | lower]['default_config']}}"
+    owner: 'root' 
+    group: 'root' 
+    mode: 0644
+    backup: yes
+  when: rol == "master"
+  notify: restart_jenkins
+
+

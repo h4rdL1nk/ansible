@@ -1,0 +1,153 @@
+---
+
+jenkins:
+   common:
+      java:
+         args: '-Dfile.encoding=UTF8 -Dmail.smtp.starttls.enable=true' 
+      plugins:
+         script: install-plugins.sh
+         install:
+            - ace-editor
+            - antisamy-markup-formatter
+            - ant
+            - authentication-tokens
+            - bitbucket
+            - bitbucket-oauth
+            - bouncycastle-api
+            - branch-api
+            - build-timeout
+            - build-with-parameters
+            - cloudbees-folder
+            - cloud-stats
+            - conditional-buildstep
+            - credentials-binding
+            - credentials
+            - dashboard-view
+            - display-url-api
+            - docker-build-publish
+            - docker-build-step
+            - docker-commons
+            - docker-plugin
+            - docker-slaves
+            - docker-workflow
+            - durable-task
+            - email-ext
+            - external-monitor-job
+            - git-client
+            - github-api
+            - github-branch-source
+            - github
+            - github-organization-folder
+            - github-pullrequest
+            - git
+            - git-server
+            - gradle
+            - handlebars
+            - http-request
+            - icon-shim
+            - jackson2-api
+            - javadoc
+            - jquery-detached
+            - junit
+            - ldap
+            - mailer
+            - mapdb-api
+            - matrix-auth
+            - matrix-project
+            - maven-plugin
+            - momentjs
+            - naginator
+            - pam-auth
+            - parameterized-scheduler
+            - parameterized-trigger
+            - pipeline-aws
+            - pipeline-utility-steps
+            - pipeline-build-step
+            - pipeline-github-lib
+            - pipeline-graph-analysis
+            - pipeline-input-step
+            - pipeline-milestone-step
+            - pipeline-model-api
+            - pipeline-model-declarative-agent
+            - pipeline-model-definition
+            - pipeline-model-extensions
+            - pipeline-rest-api
+            - pipeline-stage-step
+            - pipeline-stage-tags-metadata
+            - pipeline-stage-view
+            - plain-credentials
+            - project-stats-plugin
+            - rebuild
+            - resource-disposer
+            - run-condition
+            - scm-api
+            - script-security
+            - skip-certificate-check
+            - ssh-agent
+            - ssh-credentials
+            - ssh-slaves
+            - structs
+            - subversion
+            - timestamper
+            - token-macro
+            - view-job-filters
+            - windows-slaves
+            - workflow-aggregator
+            - workflow-api
+            - workflow-basic-steps
+            - workflow-cps-global-lib
+            - workflow-cps
+            - workflow-durable-task-step
+            - workflow-job
+            - workflow-multibranch
+            - workflow-scm-step
+            - workflow-step-api
+            - workflow-support
+            - ws-cleanup
+            - webhook-step
+            - workflow-basic-steps
+            - yet-another-docker-plugin
+
+      pip:
+        packages:
+          - awscli 
+      credentials:
+         file: 'credentials.xml'
+         keydir: 'keys'
+         users:
+            - type: 'ssh' 
+              id: '3ae657c3-2bc9-41c0-96dc-fdd3960ad812' 
+              name: 'jenkins'
+      user: 
+         name: 'jenkins'
+         shell: '/bin/bash'
+         home: '/var/lib/jenkins'
+         uid: 114 
+         gid: 118 
+         group:
+            name: 'jenkins' 
+            gid: 118
+         groups: 'docker'
+         sudo:
+            enabled: 'true'
+            commands: '/usr/bin/docker'
+         ssh:
+            known_hosts:
+               - name: 'bitbucket.org' 
+                 key: 'bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw=='
+   ubuntu:
+      cli: '/var/cache/jenkins/war/WEB-INF/jenkins-cli.jar'
+      home: '/var/lib/jenkins'
+      initialpass: 'secrets/initialAdminPassword'
+      default_config: '/etc/default/jenkins'
+      service: 'jenkins'
+      repos:
+         - name: 'Jenkins'
+           repo: 'deb http://pkg.jenkins.io/debian-stable binary/' 
+           key: 'https://pkg.jenkins.io/debian/jenkins-ci.org.key'
+      packages:
+         - 'jenkins'
+         - 'python-pip'
+         - 'python-dev'
+   centos:
+
