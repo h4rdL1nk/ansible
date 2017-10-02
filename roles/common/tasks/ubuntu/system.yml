@@ -1,0 +1,12 @@
+---
+
+- name: COPY - prevent services to start on install
+  become: yes
+  action:
+    module: copy
+    content: "{{system['ubuntu']['patch']['rc_policy']['content']}}"
+    dest: "{{system['ubuntu']['patch']['rc_policy']['file']}}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: no

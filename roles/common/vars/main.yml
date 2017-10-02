@@ -1,0 +1,8 @@
+---
+
+system:
+    ubuntu:
+       patch:
+          rc_policy:
+             file: /usr/sbin/policy-rc.d
+             content: '101'
