@@ -1,0 +1,26 @@
+---
+
+elasticsearch:
+   user: elasticsearch
+   group: elasticsearch
+   network:
+      address: 0.0.0.0
+      port: 9200
+   ubuntu:
+      service:
+         name: elasticsearch
+      config:
+         network:
+         path: /etc/elasticsearch
+         file: elasticsearch.yml
+         log:
+            path: /var/log/elasticsearch
+         data:
+            path: /data/elasticsearch 
+            perms: 700 
+      repos:
+      packages:
+         install:
+            - "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{es_version | default(5.5.1)}}.deb"
+            #- "https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/{{es_version | default(2.2.4)}}/elasticsearch-{{es_version | default(2.2.4)}}.deb"
+   centos:

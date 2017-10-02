@@ -1,0 +1,9 @@
+---
+
+java:
+   ubuntu:
+      repo: ppa:webupd8team/java
+      packages:
+         install:
+            - "oracle-java{{java_version | default(8)}}-installer"
+   centos:

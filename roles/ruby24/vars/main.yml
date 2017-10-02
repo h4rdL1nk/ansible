@@ -1,0 +1,13 @@
+---
+
+ruby:
+   package:
+      version: 2.4 
+   ubuntu:
+      repos:
+         - ppa:brightbox/ruby-ng
+      packages:
+         remove:
+            - ruby1.9.1
+         install: 
+            - ruby2.4

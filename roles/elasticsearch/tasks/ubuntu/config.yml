@@ -1,0 +1,33 @@
+---
+
+- name: "SERVICE - enable elasticsearch service"
+  become: yes
+  action:
+    module: service
+    name: "{{elasticsearch[ansible_distribution | lower]['service']['name']}}"
+    state: started
+    enabled: yes
+
+- name: "FILE - Set data_dir permissions"
+  become: yes
+  action:
+    module: file
+    path: "{{elasticsearch[ansible_distribution | lower]['config']['data']['path']}}"
+    state: directory
+    recurse: yes
+    owner: "{{elasticsearch['user']}}"
+    group: "{{elasticsearch['group']}}"
+    mode: "{{elasticsearch[ansible_distribution | lower]['config']['data']['perms']}}"
+
+- name: "TEMPLATE - config file change"
+  become: yes
+  action:
+    module: template
+    src: "{{es_version | default(5.5.1)}}/{{elasticsearch[ansible_distribution | lower]['config']['file']}}" 
+    dest: "{{elasticsearch[ansible_distribution | lower]['config']['path']}}/{{elasticsearch[ansible_distribution | lower]['config']['file']}}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify: "restart_elasticsearch" 
+
