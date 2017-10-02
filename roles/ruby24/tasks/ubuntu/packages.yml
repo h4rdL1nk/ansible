@@ -1,6 +1,6 @@
 ---
 
-- name: "APT_REPOSITORY - Add external repositories"
+- name: APT_REPOSITORY - Add external repositories
   become: yes
   action:
     module: apt_repository
@@ -9,7 +9,7 @@
     repo: "{{item}}"
   with_items: "{{ruby[ansible_distribution | lower]['repos']}}"
 
-- name: "APT - remove packages"
+- name: APT - remove packages
   become: yes
   action:
     module: apt
@@ -17,7 +17,7 @@
     state: absent
   with_items: "{{ruby[ansible_distribution | lower]['packages']['remove']}}"
 
-- name: "APT - install packages"
+- name: APT - install packages
   become: yes
   action:
     module: apt

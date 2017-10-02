@@ -1,6 +1,6 @@
 ---
 
-- name: "APT_REPOSITORY - Add repository"
+- name: APT_REPOSITORY - Add repository
   become: yes
   action:
     module: apt_repository
@@ -8,12 +8,12 @@
     update_cache: yes
     repo: "{{java[ansible_distribution | lower]['repo']}}"
 
-- name: "SHELL - Accept Oracle License"
+- name: SHELL - Accept Oracle License
   become: yes
   shell: "echo oracle-java{{java_version | default(8)}}-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections"
   changed_when: no
 
-- name: "APT - install packages"
+- name: APT - install packages
   become: yes
   action:
     module: apt
