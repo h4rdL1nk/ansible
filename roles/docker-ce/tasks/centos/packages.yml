@@ -1,0 +1,21 @@
+---
+
+- name: YUM_REPOSITORY - Add external repos
+  become: yes
+  action:
+    module: yum_repository
+    state: present
+    description: "{{item['name']}}"
+    baseurl: "{{item['repo']}}"
+    gpgcheck: no
+  with_items: "{{docker[ansible_distribution | lower]['repos']}}"
+
+- name: YUM - install packages
+  become: yes
+  action:
+    module: yum
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  with_items: "{{docker[ansible_distribution | lower]['packages']}}"
+  notify: restart_docker
