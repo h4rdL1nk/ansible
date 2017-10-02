@@ -1,18 +1,6 @@
 ---
 
-#- name: "GET_URL - install additional plugins"
-#  become: yes
-#  action:
-#    module: get_url 
-#    url: "https://updates.jenkins-ci.org/latest/{{item}}.hpi"
-#    dest: "{{jenkins['common']['user']['home']}}/plugins/{{item}}.hpi"
-#    owner: "{{jenkins['common']['user']['name']}}"
-#    group: "{{jenkins['common']['user']['group']['name']}}"
-#    mode: '0664'
-#  with_items: "{{jenkins['common']['plugins']}}"
-#  notify: restart_jenkins
-
-- name: "TEMPLATE - Copy plugins install script"
+- name: TEMPLATE - Copy plugins install script
   become: yes
   action:
     module: template
@@ -24,7 +12,7 @@
     backup: yes
   when: rol == "master"
 
-- name: "SHELL - Install plugins"
+- name: SHELL - Install plugins
   become: yes
   shell: "{{jenkins['common']['user']['home']}}/{{jenkins['common']['plugins']['script']}} {{jenkins['common']['plugins']['install'] | join(' ')}}"
   notify: restart_jenkins

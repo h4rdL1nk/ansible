@@ -1,6 +1,6 @@
 ---
 
-- name: "PIP - install packages"
+- name: PIP - install packages
   become: yes
   action:
     module: pip

@@ -1,13 +1,13 @@
 ---
 
-- name: "GROUP - create group"
+- name: GROUP - create group
   become: yes
   action:
     module: group
     name: "{{jenkins['common']['user']['group']['name']}}" 
     state: present 
 
-- name: "USER - create user"
+- name: USER - create user
   become: yes
   action:
     module: user 
@@ -18,7 +18,7 @@
     shell: "{{jenkins['common']['user']['shell']}}" 
     home: "{{jenkins['common']['user']['home']}}"
 
-- name: "LINEINFILE - grant sudo permissions"
+- name: LINEINFILE - grant sudo permissions
   become: yes
   action:
     module: lineinfile
@@ -28,7 +28,7 @@
     validate: 'visudo -cf %s'
   when: jenkins['common']['user']['sudo']['enabled'] == 'true'
 
-- name: "COPY - ssh public key"
+- name: COPY - ssh public key
   become: yes
   action:
     module: copy
@@ -37,9 +37,9 @@
     owner: "{{jenkins['common']['user']['name']}}" 
     group: "{{jenkins['common']['user']['group']['name']}}" 
     mode: '644'
-    directory_mode: '700'
+    directory_mode: 0700
 
-- name: "COPY - ssh private key"
+- name: COPY - ssh private key
   become: yes
   action:
     module: copy
@@ -47,10 +47,10 @@
     dest: "{{jenkins['common']['user']['home']}}/.ssh/"
     owner: "{{jenkins['common']['user']['name']}}" 
     group: "{{jenkins['common']['user']['group']['name']}}" 
-    mode: '600'
-    directory_mode: '700'
+    mode: 0600
+    directory_mode: 0700
 
-- name: "AUTHORIZED_KEY - set key from jenkins user"
+- name: AUTHORIZED_KEY - set key from jenkins user
   become: yes
   action:
     module: authorized_key 
@@ -58,7 +58,7 @@
     user: "{{jenkins['common']['user']['name']}}" 
     key: "{{ lookup('file', 'keys/jenkins/id_rsa.pub') }}" 
 
-- name: "KNOWN_HOSTS - add keys to known_hosts" 
+- name: KNOWN_HOSTS - add keys to known_hosts"
   become: yes 
   action:
     module: known_hosts
@@ -67,7 +67,7 @@
     key: "{{item['key']}}" 
   with_items: "{{jenkins['common']['user']['ssh']['known_hosts']}}" 
 
-- name: "FILE - set known_hosts permissions"
+- name: FILE - set known_hosts permissions
   become: yes
   action:
     module: file
