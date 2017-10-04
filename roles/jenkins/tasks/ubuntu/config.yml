@@ -14,7 +14,7 @@
     module: template
     src: default_config
     dest: "{{jenkins[ansible_distribution | lower]['default_config']}}"
-    owner: root'
+    owner: root
     group: root
     mode: 0644
     backup: yes
