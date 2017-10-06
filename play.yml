@@ -3,7 +3,10 @@
 - name: Config docker node
   hosts: localhost 
   roles:
-     - { role: jenkins , rol: master }
-     - { role: docker-ce , when: true }
-     - { role: oracle-java , java_version: 9 }
+     - role: jenkins
+       rol: master
+     - role: docker-ce
+       when: true
+     - role: oracle-java
+       java_version: 9
     
