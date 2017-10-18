@@ -5,6 +5,7 @@ python:
       pip:
          packages:
             install: 
+               - setuptools
                - ndg-httpsclient 
                - pyasn1
    ubuntu:
