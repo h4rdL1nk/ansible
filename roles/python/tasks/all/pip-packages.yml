@@ -4,6 +4,5 @@
   become: yes
   action:
     module: pip
-    executable: pip2
     name: "{{python['common']['pip']['packages']['install']}}"
     state: latest
