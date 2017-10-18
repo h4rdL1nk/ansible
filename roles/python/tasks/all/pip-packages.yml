@@ -1,0 +1,8 @@
+---
+
+- name: PIP - install packages
+  become: yes
+  action:
+    module: pip
+    name: "{{python['common']['pip']['packages']['install']}}"
+    state: latest

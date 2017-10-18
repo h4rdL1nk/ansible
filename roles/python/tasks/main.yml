@@ -1,0 +1,4 @@
+---
+
+- include: "{{ ansible_distribution | lower }}/packages.yml"
+- include: all/pip-packages.yml

@@ -1,0 +1,12 @@
+---
+
+- name: APT - install packages
+  become: yes
+  action:
+    module: apt
+    name: "{{item}}"
+    state: latest
+    allow_unauthenticated: yes
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items: "{{python[ansible_distribution | lower]['packages']['install']}}"
