@@ -1,15 +1,15 @@
 ---
 
 python:
-    common:
+   common:
       pip:
-        packages:
-          install: 
-            - ndg-httpsclient 
-            - pyasn1
-    ubuntu:
-    	packages:
-    		install: 
-    			- python{{version | default(2.7)}}
-    			- python-pip
+         packages:
+            install: 
+               - ndg-httpsclient 
+               - pyasn1
+   ubuntu:
+      packages:
+         install: 
+            - "python{{version | default(2.7)}}"
+            - python-pip
     
