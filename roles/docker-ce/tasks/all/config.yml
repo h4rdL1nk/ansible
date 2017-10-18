@@ -59,5 +59,6 @@
     group: root
     mode: 0644
     backup: yes
+  when: ansible_service_mgr == "systemd"
   notify: reload_systemd_daemon_docker 
 

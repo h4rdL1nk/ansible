@@ -4,5 +4,6 @@
   become: yes
   action:
     module: pip
-    name: "{{python['common']['pip']['packages']['install']}}"
+    name: "{{item}}"
     state: latest
+  with_items: "{{python['common']['pip']['packages']['install']}}"
