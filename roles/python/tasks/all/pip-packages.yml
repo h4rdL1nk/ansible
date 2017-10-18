@@ -4,6 +4,6 @@
   become: yes
   action:
     module: pip
-    executable: "pip{{version | default(2.7)}}"
+    executable: pip2
     name: "{{python['common']['pip']['packages']['install']}}"
     state: latest
