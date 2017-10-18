@@ -5,6 +5,7 @@ python:
       pip:
          packages:
             install: 
+               - pip
                - setuptools
                - urllib3
                - pyOpenSSL
@@ -18,4 +19,4 @@ python:
             - python-pip
             - libffi6
             - libffi-dev
-    
+   
