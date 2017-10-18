@@ -16,4 +16,6 @@ python:
             - "python{{version | default(2.7)}}"
             - "python{{version | default(2.7)}}-dev"
             - python-pip
+            - libffi6
+            - libffi-dev
     
