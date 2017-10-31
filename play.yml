@@ -5,6 +5,7 @@
   roles:
      - role: jenkins
        rol: master
+       when: false
      - role: docker-ce
        when: true
      - role: oracle-java

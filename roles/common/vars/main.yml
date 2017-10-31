@@ -2,6 +2,8 @@
 
 system:
     ubuntu:
+       packages: 
+          install:
        patch:
           rc_policy:
              file: /usr/sbin/policy-rc.d
