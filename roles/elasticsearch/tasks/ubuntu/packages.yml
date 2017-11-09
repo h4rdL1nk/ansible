@@ -1,8 +1,0 @@
----
-
-- name: APT - install external packages
-  become: yes
-  action:
-    module: apt
-    deb: "{{item}}"
-  with_items: "{{elasticsearch[ansible_distribution | lower]['packages']['install']}}"

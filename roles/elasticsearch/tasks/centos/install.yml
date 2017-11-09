@@ -1,5 +1,12 @@
 ---
 
+- name: Install required packages 
+  yum:
+    name: "{{item}}" 
+    state: latest
+  with_items:
+    - java-1.8.0-openjdk-headless
+
 - name: Add repository
   yum_repository:
     name: elasticsearch
@@ -7,8 +14,10 @@
     gpgkey: https://packages.elastic.co/GPG-KEY-elasticsearch
     gpgcheck: true
     baseurl: https://artifacts.elastic.co/packages/5.x/yum 
+    
 
 - name: Install elasticsearch 
   yum:
     name: elasticsearch 
     state: latest
+    update_cache: yes
