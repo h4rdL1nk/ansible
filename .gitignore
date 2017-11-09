@@ -1,2 +1,11 @@
+# Ansible retry files
 *.retry
-.molecule/*
+
+# Testing files
+.molecule/
+.cache
+.molecule
+.tox
+.vagrant
+molecule/*/.molecule
+tests/__pycache__
