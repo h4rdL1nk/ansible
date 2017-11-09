@@ -1,8 +1,2 @@
 ---
-- name: "restart_elasticsearch" 
-  become: yes
-  service:
-    name: "{{elasticsearch[ansible_distribution | lower]['service']['name']}}"
-    state: restarted
-    enabled: yes
-
+# handlers file for elasticsearch

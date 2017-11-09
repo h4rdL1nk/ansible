@@ -1,0 +1,24 @@
+---
+
+- name: Install required packages
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - apt-transport-https
+
+- name: Add apt key from URL
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add apt repository 
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main 
+    update_cache: yes
+    state: present
+
+- name: Install elsticsearch package
+  apt:
+    name: elasticsearch 
+    state: present

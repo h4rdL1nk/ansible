@@ -1,4 +1,3 @@
 ---
 
-- include: "{{ ansible_distribution | lower }}/packages.yml"
-- include: all/config.yml
+- include_tasks: "{{ ansible_distribution | lower }}/install.yml"
