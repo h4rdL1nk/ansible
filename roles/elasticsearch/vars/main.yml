@@ -15,4 +15,3 @@ elasticsearch:
                 url: "https://artifacts.elastic.co/packages/{{es_version}}/yum"
                 key:
                     url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
