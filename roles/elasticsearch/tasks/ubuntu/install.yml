@@ -10,12 +10,12 @@
 
 - name: Add apt key from URL
   apt_key:
-    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    url: "{{elasticsearch[ansible_distribution | lower]['install']['repository']['key']['url']}}" 
     state: present
 
 - name: Add apt repository 
   apt_repository:
-    repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main 
+    repo: "{{elasticsearch[ansible_distribution | lower]['install']['repository']['url']}}" 
     update_cache: yes
     state: present
 

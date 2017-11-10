@@ -11,9 +11,9 @@
   yum_repository:
     name: elasticsearch
     description: Elasticsearch official repository 
-    gpgkey: https://packages.elastic.co/GPG-KEY-elasticsearch
+    gpgkey: "{{elasticsearch[ansible_distribution | lower]['install']['repository']['key']['url']}}" 
     gpgcheck: true
-    baseurl: https://artifacts.elastic.co/packages/5.x/yum 
+    baseurl: "{{elasticsearch[ansible_distribution | lower]['install']['repository']['url']}}" 
     
 
 - name: Install elasticsearch 
