@@ -1,2 +1,18 @@
 ---
-   
+
+es_version: 5.x
+
+elasticsearch:
+    ubuntu:
+        install:
+            repository:
+                url: "deb https://artifacts.elastic.co/packages/{{es_version}}/apt stable main"
+                key:
+                    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    centos:
+        install:
+            repository:
+                url: "https://artifacts.elastic.co/packages/{{es_version}}/yum"
+                key:
+                    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
