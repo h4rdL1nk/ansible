@@ -1,5 +1,5 @@
 ---
 
-- include: "{{ ansible_distribution | lower }}/packages.yml"
-- include: all/config.yml
-- include: all/crontab.yml
+- include_tasks: "{{ ansible_distribution | lower }}/packages.yml"
+- include_tasks: all/config.yml
+- include_tasks: all/crontab.yml
