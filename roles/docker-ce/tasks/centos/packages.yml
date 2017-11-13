@@ -5,6 +5,7 @@
   action:
     module: yum_repository
     state: present
+    name: Docker-ce
     description: "{{item['name']}}"
     baseurl: "{{item['repo']}}"
     gpgcheck: no

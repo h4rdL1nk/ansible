@@ -9,18 +9,6 @@
     enabled: yes
   register: service_enable
   notify: "restart_{{ansible_service_mgr}}_mongod"
-  when: ansible_service_mgr == "upstart"
-
-- name: "Service - enable mongod service" 
-  become: yes
-  action:
-    module: systemd
-    state: started
-    name: "{{mongodb[ansible_distribution | lower]['service']['name']}}"
-    enabled: yes
-  register: service_enable
-  notify: "restart_{{ansible_service_mgr}}_mongod"
-  when: ansible_service_mgr == "systemd"
 
 - name: "MONGODB_USER - Add admin users"
   action:
@@ -33,34 +21,11 @@
   with_items: "{{mongodb['auth']['users']}}"
   when: service_enable.changed
 
-- name: "FILE - Set data dir permissions"
-  become: yes
-  action:
-    module: file
-    path: "{{mongodb[ansible_distribution | lower]['config']['data']['path']['custom']}}"
-    state: directory
-    recurse: no
-    owner: "{{mongodb['user']}}"
-    group: "{{mongodb['group']}}"
-    mode: "{{mongodb[ansible_distribution | lower]['config']['data']['perms']}}"
-
-- name: "STAT - Check file in data dir"
-  action:
-    module: stat
-    path: "{{mongodb[ansible_distribution | lower]['config']['data']['path']['custom']}}/{{mongodb[ansible_distribution | lower]['config']['data']['check_file']}}"
-  register: check_data_file 
-
-- name: "COMMAND - copy original mysql files"
-  become: yes
-  command: rsync -avz {{mongodb[ansible_distribution | lower]['config']['data']['path']['default']}}/ {{mongodb[ansible_distribution | lower]['config']['data']['path']['custom']}}/ 
-  notify: "restart_{{ansible_service_mgr}}_mongod" 
-  when: not check_data_file.stat.exists
-
 - name: "COPY - Copy replica set key"
   become: yes
   action:
     module: copy 
-    dest: "{{mongodb[ansible_distribution | lower]['config']['data']['path']['custom']}}/replica.key"
+    dest: "{{mongodb[ansible_distribution | lower]['config']['data']['path']['default']}}/replica.key"
     content: "{{mongodb['config']['replica']['key']['content']}}"
     owner: "{{mongodb['user']}}"
     group: "{{mongodb['group']}}"
@@ -78,8 +43,7 @@
     mode: 0644
     backup: yes
   register: systemd_unit_change
-  notify: "reload_{{ansible_service_mgr}}_daemon_mongod"
-  when: ansible_service_mgr == "systemd"
+  notify: "reload_daemon_mongod"
 
 - name: "TEMPLATE - config file change"
   become: yes
@@ -91,5 +55,5 @@
     group: root
     mode: 0644
     backup: yes
-  notify: "restart_{{ansible_service_mgr}}_mongod" 
+  notify: "restart_mongod" 
 

@@ -7,14 +7,7 @@
     name: "{{mongodb[ansible_distribution | lower]['service']['name']}}"
     state: restarted
 
-- name: restart_systemd_mongod
-  become: yes
-  action:
-    module: systemd
-    name: "{{mongodb[ansible_distribution | lower]['service']['name']}}"
-    daemon_reload: yes
-
-- name: reload_systemd_daemon_mongod
+- name: reload_daemon_mongod
   become: yes
   action:
     module: systemd
