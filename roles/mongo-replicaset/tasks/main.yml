@@ -1,0 +1,30 @@
+---
+
+- name: Gen replica set key
+  copy:
+    dest: "./{{replica['name']}}.key"
+    content: "{{replica['key']['content']}}"
+
+- name: Gen Dockerfile
+  template:
+    src: Dockerfile.j2 
+    dest: ./Dockerfile
+
+- name: Build docker image
+  docker_image:
+    state: present
+    path: .
+    dockerfile: ./Dockerfile
+    name: "mongo-rs-{{replica['name']}}"
+    nocache: yes
+
+- name: Create mongos 
+  docker_container:
+    name: "{{item}}" 
+    state: started
+    image: "mongo-rs-{{replica['name']}}" 
+    command: mongod --replSet "{{replica['name']}}" --keyFile "/tmp/{{replica['name']}}.key"
+  with_items:
+    - mongo-rs-01
+    - mongo-rs-02
+

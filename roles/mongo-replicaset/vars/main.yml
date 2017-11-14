@@ -1,0 +1,27 @@
+---
+
+docker:
+  image: mongo:latest
+
+replica:
+  name: testrs01 
+  key: 
+    perms: 400
+    content: |
+             ShmZTx25ez/TJ90vHqBIOUWeQys95BJ98njLwzJ0SPYsKnnjwCpfQPNKfquDe/KQ
+             /KoN/ee+UaKj8IaWHt6Vwi5TvK/jSib/0L/t5rRAi6Eb/A4RDTn/CSAMR3JtLNye
+             TsWvfutJl7YR1VtyvfJ5jxzjUC+W0Q8M7ni16piy70XTDjsZc0UCoA6+LZARaQje
+             98S3HSKEtMe5fVcv6ls6AYt4ya127OnnMIeGqIvXlTIsdyB+eBgvICga6lzcUptA
+             CSbKNXhk7DP+93TYiJ2aN8gpBESxOX2bJ5358PBedmP9yPLdCvp18yAg1wtRjlfg
+             pQ3l8fJcPqykhOGT6HBuXajkYZXgdIGN74dk+2SCCU0Z/+EO04A9j/WnsteIhag2
+             Y1CuIpVW2kyueBijjYNZchzX6Vu9Pc3RMmDvgeib/XTGe5IZylD8pEgY8ZsiLYtr
+             uT9kyHkGf22vrx1GQQbzcs+iIfjADtdZf9pjLdEls5pBcNtC49QivOwzOjUea6jB
+             zMAFUl/Z9Xgk9bB8TLcNo66nSj1gJDVobc5h5WAF6MHDDFtRmXE8GztT+CfEvFG2
+             idRdarz8MhPaUlgpyylOdKEo5g8icjG5nsskrk7VE4lkrCsRfj1WpLYnP04+ZLWI
+             q+sDEN5HM7NOnZO9nSxyQSi/1drxDg5XWIEbgQwX07ohKcBULggDuxVhuNE5PdnJ
+             g5YpphJ6KkzV3GOnNpCVCnOW1u8q5EJ+Hoo+iVMEkRgeMTxPGoBqI7v8Iozk2JQ6
+             aCQi3JQi+jzEjGLoXEq2m67TrBQe2gLLrAhJFkdptIHRy2+f/sSg/oZnq2AYcVQz
+             894Fbv7vD4IvDEkPjxL6893K7vSX2nZtGejT5fGe3E/0zUJB8gPoJCD+rSSeathc
+             hQo0fM/lfg2WScNiCNIhcpBTjR/fhPojA8RtI3cXdpD0MFquae2oVpsirfUxmPT7
+             2inG5KP6gKvDhvkOgQOoOZ3eTp7u
+

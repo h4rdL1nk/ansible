@@ -1,0 +1,6 @@
+FROM {{docker['image']}}
+
+ADD {{replica['name']}}.key /tmp/
+
+RUN chmod 0600 /tmp/{{replica['name']}}.key \
+    && chown mongodb. /tmp/{{replica['name']}}.key
