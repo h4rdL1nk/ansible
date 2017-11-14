@@ -1,5 +1,5 @@
 #Environment build
-pip install --upgrade pip molecule docker-py
+pip install --upgrade pip molecule docker
 
 #Role initialization
 molecule init role -d docker -r test
