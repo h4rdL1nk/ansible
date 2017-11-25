@@ -1,0 +1,20 @@
+---
+
+repos:
+  ubuntu:
+    docker-ce:
+      url: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+      key: "https://download.docker.com/linux/ubuntu/gpg"
+
+packages:
+  ubuntu:
+    install:
+      - git
+      - python-pip
+      - python-dev
+      - docker-ce
+
+pip:
+  install:
+    ansible:
+      version: 1.9.1
