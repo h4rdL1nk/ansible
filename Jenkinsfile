@@ -28,6 +28,7 @@ pipeline {
                     sh script: """
                         cd roles/elasticsearch
                         molecule create
+                        molecule converge
                     """
                 }
             }
@@ -35,6 +36,7 @@ pipeline {
     }
     post{
         always{
+            sh script: "molecule destroy"
             deleteDir()
         }
     }
