@@ -10,3 +10,4 @@
 molecule/*/.molecule
 tests/__pycache__
 tests/__pycache__/*
+*.log
