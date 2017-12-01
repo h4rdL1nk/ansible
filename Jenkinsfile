@@ -24,13 +24,14 @@ pipeline {
         }
         stage('Role check'){
             steps{
-                script{
                     sh script: """
+                        virtualenv -p /usr/bin/python2.7 .venv
+                        .venv/bin/activate
+                        pip install requirements.txt
                         cd roles/elasticsearch
                         molecule create
                         molecule converge
                     """
-                }
             }
         }
     }

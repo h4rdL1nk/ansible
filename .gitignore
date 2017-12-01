@@ -11,3 +11,7 @@ molecule/*/.molecule
 tests/__pycache__
 tests/__pycache__/*
 *.log
+
+#Python virtual env
+.venv
+.venv/*

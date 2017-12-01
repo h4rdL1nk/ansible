@@ -1,0 +1,6 @@
+ansible<=1.9.1
+molecule
+pyopenssl
+ndg-httpsclient
+pyasn1
+docker-py
