@@ -26,7 +26,7 @@ pipeline {
             steps{
                     sh script: """
                         virtualenv -p /usr/bin/python2.7 .venv
-                        .venv/bin/activate
+                        source .venv/bin/activate
                         pip install requirements.txt
                         cd roles/elasticsearch
                         molecule create
