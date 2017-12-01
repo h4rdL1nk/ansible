@@ -1,4 +1,4 @@
-ansible<=1.9.1
+ansible
 molecule
 pyopenssl
 ndg-httpsclient
