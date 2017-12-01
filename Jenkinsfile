@@ -27,7 +27,7 @@ pipeline {
                     sh script: """
                         virtualenv -p /usr/bin/python2.7 .venv
                         source .venv/bin/activate
-                        pip install requirements.txt
+                        pip install -r requirements.txt
                         cd roles/elasticsearch
                         molecule create
                         molecule converge
