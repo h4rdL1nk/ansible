@@ -1,3 +1,7 @@
 ---
 
+- name: Set timezone
+  timezone:
+    name: Europe/Madrid
+
 - include: "{{ ansible_distribution | lower }}/system.yml"

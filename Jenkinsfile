@@ -36,7 +36,10 @@ pipeline {
     }
     post{
         always{
-            sh script: "molecule destroy"
+            sh script: """
+                cd roles/elasticsearch
+                molecule destroy
+            """
             deleteDir()
         }
     }
