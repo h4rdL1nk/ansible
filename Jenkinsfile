@@ -22,12 +22,19 @@ pipeline {
                 }
             }
         }
-        stage('Role check'){
+        stage('Prepare python virtualenv'){
             steps{
-                    sh script: """
+                sh script: """
                         virtualenv -p /usr/bin/python2.7 .venv
                         source .venv/bin/activate
                         pip install -r requirements.txt
+                """
+            }
+        }
+        stage('Role check'){
+            steps{
+                    sh script: """
+                        source .venv/bin/activate
                         cd roles/elasticsearch
                         molecule create
                     """
