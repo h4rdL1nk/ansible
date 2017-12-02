@@ -49,6 +49,11 @@ pipeline {
     }
     post{
         always{
+            sh script: """
+                        source .venv/bin/activate
+                        cd roles/elasticsearch
+                        molecule destroy
+                    """
             deleteDir()
         }
     }
