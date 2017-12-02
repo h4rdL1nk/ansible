@@ -33,6 +33,8 @@ pipeline {
                     """
 
                     sh script: """
+                        source .venv/bin/activate
+                        cd roles/elasticsearch
                         molecule converge
                     """
             }
