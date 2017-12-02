@@ -30,6 +30,9 @@ pipeline {
                         pip install -r requirements.txt
                         cd roles/elasticsearch
                         molecule create
+                    """
+
+                    sh script: """
                         molecule converge
                     """
             }
@@ -37,10 +40,6 @@ pipeline {
     }
     post{
         always{
-            sh script: """
-                cd roles/elasticsearch
-                molecule destroy
-            """
             deleteDir()
         }
     }
