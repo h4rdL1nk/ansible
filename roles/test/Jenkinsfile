@@ -26,7 +26,7 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'ost-epg-admin', usernameVariable: 'OS_USERNAME', passwordVariable: 'OS_PASSWORD')]) {
                     sh script: """
-                        virtualenv -p /usr/bin/python2.7 .venv"
+                        virtualenv -p /usr/bin/python2.7 .venv
                         source .venv/bin/activate
                         cd roles/test
                         pip install -r requirements.txt
