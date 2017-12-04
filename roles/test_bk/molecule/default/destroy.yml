@@ -1,4 +1,5 @@
 ---
+
 - name: Destroy
   hosts: localhost
   connection: local
@@ -6,13 +7,17 @@
   no_log: "{{ not lookup('env', 'MOLECULE_DEBUG') | bool }}"
   vars:
     molecule_file: "{{ lookup('env', 'MOLECULE_FILE') }}"
-    molecule_instance_config: "{{ lookup('env', 'MOLECULE_INSTANCE_CONFIG') }}"
+    molecule_instance_config: "{{ lookup('env',' MOLECULE_INSTANCE_CONFIG') }}"
     molecule_yml: "{{ lookup('file', molecule_file) | molecule_from_yaml }}"
   tasks:
     - name: Destroy molecule instance(s)
-      os_server:
-        name: "{{ item.name }}"
-        state: absent
+      molecule_vagrant:
+        instance_name: "{{ item.name }}"
+        platform_box: "{{ item.box }}"
+        provider_name: "{{ molecule_yml.driver.provider.name }}"
+        force_stop: "{{ item.force_stop | default(True) }}"
+
+        state: destroy
       register: server
       with_items: "{{ molecule_yml.platforms }}"
 

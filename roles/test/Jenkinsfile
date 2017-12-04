@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    options {
+        timestamps()
+        disableConcurrentBuilds()
+    }
+    stages {
+        stage('Checkout code'){
+            steps{
+                script{
+                    codeCo = checkout scm:[
+                                $class: 'GitSCM',
+                                poll: true,
+                                branches: [[
+                                    name: "*/*"
+                                ]],
+                                userRemoteConfigs: [[
+                                    credentialsId: '',
+                                    url: "https://github.com/h4rdL1nk/ansible"
+                                ]]
+                            ]
+                }
+            }
+        }
+        stage('Create and test molecule environment'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'ost-epg-admin', usernameVariable: 'OS_USERNAME', passwordVariable: 'OS_PASSWORD')]) {
+                    sh script: """
+                        virtualenv -p /usr/bin/python2.7 .venv"
+                        source .venv/bin/activate
+                        cd roles/test
+                        pip install -r requirements.txt
+                        molecule create
+                    """
+                }
+            }
+        }
+    }
+    post{
+        success{
+            deleteDir()
+        }
+    }
+}

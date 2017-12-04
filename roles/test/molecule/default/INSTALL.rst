@@ -5,13 +5,12 @@ Install
 Requirements
 ============
 
-* Vagrant
-* Virtualbox, Parallels, VMware Fusion, VMware Workstation or VMware Desktop
-* python-vagrant
+* An OpenStack openrc file
+* shade
 
 Install
 =======
 
 .. code-block:: bash
 
-  $ sudo pip install python-vagrant
+  $ sudo pip install shade
