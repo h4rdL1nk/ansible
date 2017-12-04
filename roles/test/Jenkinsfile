@@ -30,7 +30,7 @@ pipeline {
                         source .venv/bin/activate
                         cd roles/test
                         pip install -r requirements.txt
-                        molecule create
+                        molecule --debug create
                     """
                 }
             }
