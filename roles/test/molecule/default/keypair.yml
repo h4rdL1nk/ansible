@@ -6,12 +6,14 @@
 
 - name: Delete remote keypair
   os_keypair:
+    validate_certs: "{{ validate_certs | default(omit)}}"
     name: "{{ keypair_name }}"
     state: absent
   when: not keypair_local.stat.exists
 
 - name: Create keypair
   os_keypair:
+    validate_certs: "{{ validate_certs | default(omit)}}"
     name: "{{ keypair_name }}"
   register: keypair
 
