@@ -30,10 +30,12 @@
 
     - name: Gather facts about network for use with instance creation
       os_networks_facts:
+        validate_certs: "{{ validate_certs | default(omit)}}"
         name: "{{ neutron_network_name }}"
 
     - name: Create molecule instance(s)
       os_server:
+        validate_certs: "{{ validate_certs | default(omit)}}"
         name: "{{ item.name }}"
         image: "{{ item.image }}"
         flavor: "{{ item.flavor }}"
