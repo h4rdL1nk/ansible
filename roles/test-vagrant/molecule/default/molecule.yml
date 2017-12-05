@@ -9,7 +9,7 @@ lint:
   name: yamllint
 platforms:
   - name: instance
-    box: /home/luismy/package.box
+    box: /home/luismy/redhat-7.4-minimal.box 
 provisioner:
   name: ansible
   lint:
