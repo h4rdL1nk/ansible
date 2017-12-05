@@ -1,2 +1,8 @@
 ---
-# tasks file for test
+
+- name: Set timezone
+  become: yes
+  timezone:
+     name: Europe/Madrid
+
+- include_tasks: "{{ ansible_distribution | lower }}/install.yml"

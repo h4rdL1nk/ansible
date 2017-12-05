@@ -5,12 +5,12 @@ Install
 Requirements
 ============
 
-* An OpenStack openrc file
-* shade
+* Docker Engine
+* docker-py
 
 Install
 =======
 
 .. code-block:: bash
 
-  $ sudo pip install shade
+  $ sudo pip install docker-py
