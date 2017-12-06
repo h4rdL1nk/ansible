@@ -8,15 +8,18 @@ repos:
     fluentd:
       url: "deb http://packages.treasuredata.com/2/ubuntu/{{ ansible_distribution_release }}/ {{ ansible_distribution_release }} contrib"
       key: "https://packages.treasuredata.com/GPG-KEY-td-agent"
+  redhat:
+    docker-ce:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
 
 packages:
   ubuntu:
     install:
-      - git
-      - python-pip
-      - python-dev
       - docker-ce
       - td-agent
+  redhat:
+    install:
+      - docker-ce
 
 pip:
   install:
