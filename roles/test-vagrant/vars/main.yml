@@ -11,6 +11,9 @@ repos:
   redhat:
     docker-ce:
       url: https://download.docker.com/linux/centos/docker-ce.repo
+    fluentd:
+      url: "http://packages.treasuredata.com/2/redhat/$releasever/$basearch"
+      key: https://packages.treasuredata.com/GPG-KEY-td-agent
 
 packages:
   ubuntu:
@@ -19,7 +22,7 @@ packages:
       - td-agent
   redhat:
     install:
-      - docker-ce
+      - td-agent 
 
 pip:
   install:
