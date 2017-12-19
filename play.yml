@@ -3,5 +3,5 @@
 - name: Config docker node
   hosts: localhost 
   roles:
-     - role: mongo-replicaset 
+     - role: test 
     

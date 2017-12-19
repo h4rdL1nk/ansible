@@ -1,0 +1,11 @@
+---
+
+- os_server_volume:
+    validate_certs: False
+    state: "{{ action }}" 
+    server: "{{ instance_name }}"
+    volume: "{{ item_vol.name }}"
+    device: "{{ item_vol.device }}"
+  with_items: "{{ instance_volumes }}"
+  loop_control:
+    loop_var: item_vol

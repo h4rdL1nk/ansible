@@ -1,0 +1,10 @@
+---
+
+- os_volume:
+    validate_certs: False
+    state: "{{ action }}"
+    size: "{{ item_vol.size }}"
+    display_name: "{{ item_vol.name }}"
+  with_items: "{{ instance_volumes }}"
+  loop_control:
+    loop_var: item_vol

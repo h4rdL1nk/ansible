@@ -5,4 +5,4 @@
   timezone:
      name: Europe/Madrid
 
-- include_tasks: "{{ ansible_distribution | lower }}/install.yml"
+- include_tasks: "{{ ansible_distribution | lower }}/template.yml"

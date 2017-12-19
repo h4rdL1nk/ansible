@@ -1,0 +1,6 @@
+---
+
+- name: Template test
+  template:
+    src: serverip.j2
+    dest: /tmp/serverip.txt

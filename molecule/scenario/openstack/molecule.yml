@@ -1,0 +1,44 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+
+driver:
+  name: openstack
+
+lint:
+  name: yamllint
+
+platforms:
+  - name: molecule-test-instance
+    image: TID-RH7-3NIC.20171006 
+    flavor: TID-01CPU-01GB-20GB 
+    sshuser: cloud-user
+    ip_pool: ext_mgmt
+    volumes:
+      - name: molecule-test-instance-volume_1
+        size: 10
+        device: /dev/vdb
+
+provisioner:
+  name: ansible
+  options:
+    become: true
+  inventory:
+    group_vars: 
+      all:
+        dummy: true
+    host_vars:
+      all:
+        dummy:true
+  lint:
+    name: ansible-lint
+
+scenario:
+  name: default
+
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
