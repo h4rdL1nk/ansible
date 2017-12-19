@@ -11,13 +11,13 @@ lint:
   name: yamllint
 
 platforms:
-  - name: molecule-test-instance
+  - name: ${JOB_NAME:-molecule_instance_manual} 
     image: TID-RH7-3NIC.20171006 
     flavor: TID-01CPU-01GB-20GB 
     sshuser: cloud-user
     ip_pool: ext_mgmt
     volumes:
-      - name: molecule-test-instance-volume_1
+      - name: ${JOB_NAME:-molecule_instance_manual}_volume_1 
         size: 10
         device: /dev/vdb
 
