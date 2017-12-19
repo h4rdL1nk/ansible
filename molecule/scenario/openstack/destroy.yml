@@ -25,10 +25,6 @@
       async: 7200
       poll: 0
 
-    - name: Destroy volumes
-      include: create_volumes.yml action=absent instance_volumes={{item.volumes}} 
-      with_items: "{{ molecule_yml.platforms }}"
-
     - name: Wait for instance(s) deletion to complete
       async_status:
         jid: "{{ item.ansible_job_id }}"
@@ -37,6 +33,10 @@
       retries: 300
       with_items: "{{ server.results }}"
 
+    - name: Destroy volumes
+      include: create_volumes.yml action=absent instance_volumes={{item.volumes}} 
+      with_items: "{{ molecule_yml.platforms }}"
+      
     # Mandatory configuration for Molecule to function.
 
     - name: Populate instance config
