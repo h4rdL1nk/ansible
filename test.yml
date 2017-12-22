@@ -1,0 +1,7 @@
+---
+
+- name: test playbook
+  hosts: test
+  tasks:
+    - debug:
+        msg: "{% for server in groups['test'] %}{{ hostvars[server]['ansible_' + interface ]['ipv4']['address'] }}{% endfor %}"
