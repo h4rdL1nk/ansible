@@ -5,6 +5,5 @@
   yum:
     name: "{{ item }}"
     state: present
-  with_items:
-    - https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.12.1.ce-1.el7.centos.x86_64.rpm
-    - python-docker-py
+  with_items: "{{ docker[ansible_distribution | lower]['packages'] }}""
+
