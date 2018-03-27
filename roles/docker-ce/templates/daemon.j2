@@ -1,0 +1,27 @@
+{
+    "authorization-plugins": [
+        "rhel-push-plugin"
+    ], 
+    "bip": "192.168.200.1/24", 
+    "default-runtime": "docker-runc", 
+    "exec-opts": [
+        "native.cgroupdriver=systemd"
+    ], 
+    "hosts": [
+        "tcp://172.16.10.156:2376", 
+        "unix:///var/run/docker.sock"
+    ], 
+    "runtimes": {
+        "docker-runc": {
+            "path": "/usr/libexec/docker/docker-runc-current"
+        }
+    }, 
+    "storage-driver": "devicemapper", 
+    "storage-opts": [
+        "dm.thinpooldev=/dev/mapper/vg_docker-docker--pool", 
+        "dm.use_deferred_removal=true", 
+        "dm.use_deferred_deletion=true"
+    ], 
+    "userland-proxy": false, 
+    "userland-proxy-path": "/usr/libexec/docker/docker-proxy-current"
+}
