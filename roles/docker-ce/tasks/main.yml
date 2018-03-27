@@ -3,3 +3,4 @@
 - include_tasks: "{{ ansible_distribution | lower }}/packages.yml"
 - include_tasks: all/config.yml
 - include_tasks: all/crontab.yml
+- include_tasks: all/service.yml
